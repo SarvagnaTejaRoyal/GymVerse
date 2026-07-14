@@ -43,7 +43,7 @@ CREATE TABLE users (
     role VARCHAR(20) NOT NULL
 );
 
-2. members
+### 2. `members`
 Tracks general profile attributes and target renewal deadlines.
 CREATE TABLE members (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -54,7 +54,7 @@ CREATE TABLE members (
     due_date DATE NOT NULL
 );
 
-3. payments
+### 3. `payments`
 Maintains records of specific transaction histories mapped directly to existing members via foreign key relationships.
 CREATE TABLE payments (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -66,7 +66,7 @@ CREATE TABLE payments (
     FOREIGN KEY (member_id) REFERENCES members(id) ON DELETE CASCADE
 );
 
-💻 Project Structure
+### `💻 Project Structure`
 The project code follows a clean MVC pattern:
 GymVerse/
 │
