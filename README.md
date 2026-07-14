@@ -34,7 +34,7 @@ GymVerse is a comprehensive dynamic Java Web Application engineered using the MV
 The system uses a structured database named `gym_management` containing tables linked via primary and foreign key constraints[cite: 18]:
 
 ### 1. `users`
-Maintains structural login criteria for role validation[cite: 30].
+Maintains structural login criteria for role validation.
 ```sql
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -42,8 +42,9 @@ CREATE TABLE users (
     password VARCHAR(100) NOT NULL,
     role VARCHAR(20) NOT NULL
 );
-
-### 2. `members`
+```
+2. members
+```
 Tracks general profile attributes and target renewal deadlines.
 CREATE TABLE members (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -53,8 +54,9 @@ CREATE TABLE members (
     fee_package VARCHAR(50) NOT NULL,
     due_date DATE NOT NULL
 );
-
-### 3. `payments`
+```
+3. payments
+```
 Maintains records of specific transaction histories mapped directly to existing members via foreign key relationships.
 CREATE TABLE payments (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -65,9 +67,10 @@ CREATE TABLE payments (
     status VARCHAR(20) NOT NULL,
     FOREIGN KEY (member_id) REFERENCES members(id) ON DELETE CASCADE
 );
-
-### `💻 Project Structure`
+```
+💻 Project Structure
 The project code follows a clean MVC pattern:
+```
 GymVerse/
 │
 ├── src/
