@@ -1,37 +1,37 @@
 # ☕︎ GymVerse - Gym Management System
 
-GymVerse is a comprehensive dynamic Java Web Application engineered using the MVC (Model-View-Controller) architecture pattern[cite: 5, 21, 25]. It provides a streamlined, professional digital environment for fitness centers to efficiently onboard members, process packages, track payment histories, distribute static nutrition guides, and push real-time updates directly to automated subscriber terminals[cite: 1, 2, 3, 10].
+GymVerse is a comprehensive dynamic Java Web Application engineered using the MVC (Model-View-Controller) architecture pattern. It provides a streamlined, professional digital environment for fitness centers to efficiently onboard members, process packages, track payment histories, distribute static nutrition guides, and push real-time updates directly to automated subscriber terminals.
 
 ---
 
 ## 🚀 Key Features
 
 ### 👤 Administrator Features
-*   **Member Management:** Seamlessly register new members by recording full names, contact emails, phone numbers, localized package terms, and specific dynamic due dates[cite: 1].
-*   **Member Registry Dashboard:** Access a real-time data table listing all current members with complete administrative action hooks to edit profile details or execute deletions with cascading constraints[cite: 4, 13].
-*   **Payment Tracking:** Log incoming transaction entries by assigning specific figures, date fields, target billing cycles, and payment statuses (Paid/Pending) mapped to distinct user keys[cite: 10].
-*   **Notice Board Distribution:** Broadcast structural alerts and management updates directly using integrated cloud databases[cite: 2].
+*   **Member Management:** Seamlessly register new members by recording full names, contact emails, phone numbers, localized package terms, and specific dynamic due dates.
+*   **Member Registry Dashboard:** Access a real-time data table listing all current members with complete administrative action hooks to edit profile details or execute deletions with cascading constraints.
+*   **Payment Tracking:** Log incoming transaction entries by assigning specific figures, date fields, target billing cycles, and payment statuses (Paid/Pending) mapped to distinct user keys.
+*   **Notice Board Distribution:** Broadcast structural alerts and management updates directly using integrated cloud databases.
 
 ### 🏋️ Member Workspace Features
-*   **Subscription Details:** Personalized panels display upcoming membership renewal milestones alongside real-time calculated day-countdown indicators[cite: 7].
-*   **Payment Ledger View:** View individual billing history blocks indicating exact transaction amounts, timestamps, and current structural standing[cite: 7].
-*   **Diet & Supplement Guides:** Explore specific structured target visual cards containing categorized wellness strategies (e.g., Beginner, Muscle Gain, Fat Loss) paired with direct recommended supplement catalog checkouts[cite: 3, 14].
+*   **Subscription Details:** Personalized panels display upcoming membership renewal milestones alongside real-time calculated day-countdown indicators.
+*   **Payment Ledger View:** View individual billing history blocks indicating exact transaction amounts, timestamps, and current structural standing.
+*   **Diet & Supplement Guides:** Explore specific structured target visual cards containing categorized wellness strategies (e.g., Beginner, Muscle Gain, Fat Loss) paired with direct recommended supplement catalog checkouts.
 
 ---
 
 ## 🛠️ Technology Stack
 
-*   **Backend Core:** Java Development Kit (JDK 8+), Java Servlets, JSP (JavaServer Pages)[cite: 1, 21]
+*   **Backend Core:** Java Development Kit (JDK 8+), Java Servlets, JSP (JavaServer Pages)
 *   **Database Management:** MySQL Server, JDBC (Java Database Connectivity)
-*   **Real-time Infrastructure:** Firebase Web SDK, Firebase Realtime Database API[cite: 2]
-*   **Frontend Interface:** Modern HTML5, Responsive CSS3 Grid systems, FontAwesome Vector Icons[cite: 2, 3, 11, 12]
+*   **Real-time Infrastructure:** Firebase Web SDK, Firebase Realtime Database API
+*   **Frontend Interface:** Modern HTML5, Responsive CSS3 Grid systems, FontAwesome Vector Icons
 *   **IDE Context:** Eclipse IDE for Enterprise Java Developers
 
 ---
 
 ## 🗄️ Database Architecture & Schema
 
-The system uses a structured database named `gym_management` containing tables linked via primary and foreign key constraints[cite: 18]:
+The system uses a structured database named `gym_management` containing tables linked via primary and foreign key constraints:
 
 ### 1. `users`
 Maintains structural login criteria for role validation.
@@ -74,7 +74,7 @@ The project code follows a clean MVC pattern:
 GymVerse/
 │
 ├── src/
-│   ├── controller/          # Java Servlets controlling data flow and routing[cite: 21, 25]
+│   ├── controller/          # Java Servlets controlling data flow and routing
 │   │   ├── AddMemberServlet.java
 │   │   ├── AddPaymentServlet.java
 │   │   ├── DeleteMemberServlet.java
@@ -85,13 +85,13 @@ GymVerse/
 │   │   ├── UpdateMemberServlet.java
 │   │   └── ViewMembersServlet.java
 │   │
-│   ├── dao/                 # Data Access Objects executing SQL Queries[cite: 18, 19, 20]
+│   ├── dao/                 # Data Access Objects executing SQL Queries
 │   │   ├── DBConnection.java
 │   │   ├── MemberDAO.java
 │   │   ├── PaymentDAO.java
 │   │   └── UserDAO.java
 │   │
-│   └── model/               # Plain Old Java Objects (POJOs) representing data models[cite: 15, 16, 17]
+│   └── model/               # Plain Old Java Objects (POJOs) representing data models
 │       ├── Member.java
 │       ├── Payment.java
 │       └── User.java
@@ -124,7 +124,7 @@ Open your MySQL Workbench / Command Line client.
 
 Execute the database schema setup scripts provided above.
 
-Update database credentials inside src/dao/DBConnection.java if needed[cite: 18].
+Update database credentials inside src/dao/DBConnection.java if needed.
 
 3. Project Import:
 
