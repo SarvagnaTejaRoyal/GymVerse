@@ -1,3 +1,4 @@
+
 package controller;
 
 import java.io.IOException;
@@ -13,9 +14,12 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/AddMemberServlet")
 public class AddMemberServlet extends HttpServlet {
+
     private static final long serialVersionUID = 1L;
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(
+            HttpServletRequest request,
+            HttpServletResponse response)
             throws ServletException, IOException {
 
         String name = request.getParameter("name");
@@ -24,11 +28,17 @@ public class AddMemberServlet extends HttpServlet {
         String feePackage = request.getParameter("feePackage");
         String dueDate = request.getParameter("dueDate");
 
-        Member member = new Member(name, email, phone, feePackage, dueDate);
+        Member member = new Member(
+                name, email, phone, feePackage, dueDate);
 
         MemberDAO memberDAO = new MemberDAO();
-        memberDAO.addMember(member);
 
-        response.sendRedirect("admin-dashboard.jsp");
+        boolean added = memberDAO.addMember(member);
+
+        if (added) {
+            response.sendRedirect("admin-dashboard.jsp?memberAdded=1");
+        } else {
+            response.sendRedirect("admin-dashboard.jsp?memberAdded=0");
+        }
     }
 }

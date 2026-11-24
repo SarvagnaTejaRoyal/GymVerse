@@ -10,35 +10,101 @@ import model.Member;
 
 public class MemberDAO {
 
-    public boolean addMember(Member member) {
-        boolean status = false;
 
-        try {
-            Connection con = DBConnection.getConnection();
+	public boolean addMember(Member member) {
+	
+	    Connection con = null;
+	
+	    try {
+	        con = DBConnection.getConnection();
+	
+	        if (con == null) {
+	            return false;
+	        }
+	
+	        con.setAutoCommit(false);
+	
+	        // Step 1: Insert member details.
+	        String memberSql =
+	                "INSERT INTO members " +
+	                "(name, email, phone, fee_package, due_date) " +
+	                "VALUES (?, ?, ?, ?, ?)";
+	
+	        PreparedStatement memberPs =
+	                con.prepareStatement(memberSql);
+	
+	        memberPs.setString(1, member.getName());
+	        memberPs.setString(2, member.getEmail());
+	        memberPs.setString(3, member.getPhone());
+	        memberPs.setString(4, member.getFeePackage());
+	        memberPs.setString(5, member.getDueDate());
+	
+	        int memberRows = memberPs.executeUpdate();
+	        memberPs.close();
+	
+	        if (memberRows == 0) {
+	            con.rollback();
+	            return false;
+	        }
+	
+	        // Step 2: Create the member login account.
+	        String defaultPassword = "member123";
+	
+	        String hashedPassword =
+	                PasswordUtilDAO.hashPassword(defaultPassword);
+	
+	        String userSql =
+	                "INSERT INTO users " +
+	                "(email, password, role, must_change_password) " +
+	                "VALUES (?, ?, ?, ?)";
+	
+	        PreparedStatement userPs =
+	                con.prepareStatement(userSql);
+	
+	        userPs.setString(1, member.getEmail());
+	        userPs.setString(2, hashedPassword);
+	        userPs.setString(3, "member");
+	        userPs.setBoolean(4, true);
+	
+	        int userRows = userPs.executeUpdate();
+	        userPs.close();
+	
+	        if (userRows == 0) {
+	            con.rollback();
+	            return false;
+	        }
+	
+	        // Both insertions succeeded.
+	        con.commit();
+	
+	        return true;
+	
+	    } catch (Exception e) {
+	
+	        if (con != null) {
+	            try {
+	                con.rollback();
+	            } catch (Exception rollbackError) {
+	                rollbackError.printStackTrace();
+	            }
+	        }
+	
+	        e.printStackTrace();
+	        return false;
+	
+	    } finally {
+	
+	        if (con != null) {
+	            try {
+	                con.setAutoCommit(true);
+	                con.close();
+	            } catch (Exception closeError) {
+	                closeError.printStackTrace();
+	            }
+	        }
+	    }
+	}
 
-            String sql = "INSERT INTO members(name, email, phone, fee_package, due_date) VALUES(?,?,?,?,?)";
-
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(1, member.getName());
-            ps.setString(2, member.getEmail());
-            ps.setString(3, member.getPhone());
-            ps.setString(4, member.getFeePackage());
-            ps.setString(5, member.getDueDate());
-
-            int rows = ps.executeUpdate();
-
-            if (rows > 0) {
-                status = true;
-            }
-
-            con.close();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return status;
-    }
 
     public List<Member> getAllMembers() {
         List<Member> members = new ArrayList<Member>();

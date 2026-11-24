@@ -5,6 +5,27 @@
 <%@ page import="java.time.LocalDate" %>
 <%@ page import="java.time.temporal.ChronoUnit" %>
 
+
+<%
+    if (session == null
+            || session.getAttribute("userEmail") == null
+            || !"member".equals(session.getAttribute("userRole"))) {
+
+        response.sendRedirect("login.jsp?role=member");
+        return;
+    }
+
+    if (Boolean.TRUE.equals(
+            session.getAttribute("mustChangePassword"))) {
+
+        response.sendRedirect(
+                "ChangePasswordServlet?firstLogin=1");
+
+        return;
+    }
+%>
+
+
 <%
   Member member = (Member) request.getAttribute("member");
   Payment payment = (Payment) request.getAttribute("payment");
@@ -90,6 +111,23 @@
       </div>
 
     <% } %>
+    
+    
+    <h2>🔐 Account Security</h2>
+
+    <div class="card">
+
+        <p>
+            Keep your account secure by updating your password
+            whenever needed.
+        </p>
+
+        <a href="ChangePasswordServlet" class="buy-btn">
+            Change Password
+        </a>
+
+    </div>
+    
 
   </div>
 
